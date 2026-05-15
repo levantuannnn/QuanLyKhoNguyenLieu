@@ -25,8 +25,7 @@ public class BaoCaoHuHongService {
          
         BaoCaoHuHong savedBc = repo.save(bc);
          
-        nguyenLieuService.updateStock(bc.getNguyenLieu().getMaNguyenLieu(), -bc.getSoLuongHong());
-        
+        nguyenLieuService.updateStock(bc.getNguyenLieu().getMaNguyenLieu(), -bc.getSoLuongHong()); 
         return savedBc;
     }
     public List<BaoCaoHuHong> xapxep(){

@@ -22,9 +22,5 @@ public class PhieuXuatController {
     public PhieuXuat xuatKho(@RequestBody PhieuXuatRequest request) {
         return service.thucHienXuatKho(request.phieu, request.chiTiet);
     }
-    @GetMapping("/hienthiten/{hienthi}")
-    public List<PhieuXuat> hienthiten(@PathVariable String hienthi){
-    	 return service.hienthiten(hienthi);
-    	 
-    }
+ 
 }

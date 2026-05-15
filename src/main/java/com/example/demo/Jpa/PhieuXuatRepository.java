@@ -9,5 +9,5 @@ import com.example.demo.Model.PhieuXuat;
 
 @Repository
 public interface PhieuXuatRepository extends JpaRepository<PhieuXuat, Integer> {
-	  List<PhieuXuat> exitTen()
+ 
 }

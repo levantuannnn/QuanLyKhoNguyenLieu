@@ -1,6 +1,8 @@
 package com.example.demo.Service;
  
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +23,11 @@ public class PhieuXuatService {
         for (ChiTietPhieuXuat ct : dsChiTiet) {
             ct.setMaPhieuXuat(savedPhieu.getMaPhieuXuat());
             chiTietRepo.save(ct);
-            // Trừ đi trong kho (truyền số âm)
-            nguyenLieuService.updateStock(ct.getMaNguyenLieu(), -ct.getSoLuong());
+             nguyenLieuService.updateStock(ct.getMaNguyenLieu(), -ct.getSoLuong());
+              
         }
         return savedPhieu;
     }
-    public List<PhieuXuat> hienthiten(String  ten){
-    	return   phieuXuatRepo.exitTen(ten);
-    	 
-    }
+    
     
 }
