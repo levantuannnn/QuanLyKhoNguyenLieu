@@ -35,5 +35,6 @@ public class NhanVienService {
     public List<NhanVien> timnv(String tennv){
     	 return repo.findByTenNhanVien(tennv);
     }
+    
    
 }

@@ -8,14 +8,7 @@ import java.util.Objects;
 @Table(name = "ChiTietPhieuNhap")
 @IdClass(ChiTietPhieuNhap.class) // Sử dụng chính class này để định danh ID
 public class ChiTietPhieuNhap implements Serializable {
-
-    public byte[] getImage() {
-		return image;
-	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
+ 
 	@Id
     @Column(name = "MaPhieuNhap")
     private Integer maPhieuNhap;
@@ -25,22 +18,20 @@ public class ChiTietPhieuNhap implements Serializable {
     @Column(name = "MaNguyenLieu")
     private Integer maNguyenLieu;
 
-    public ChiTietPhieuNhap(Integer maPhieuNhap, Integer maNguyenLieu, Integer soLuong, byte[] image, Double donGia,
+    public ChiTietPhieuNhap(Integer maPhieuNhap, Integer maNguyenLieu, Integer soLuong, Double donGia,
 			PhieuNhap phieuNhap, NguyenLieu nguyenLieu) {
 		super();
 		this.maPhieuNhap = maPhieuNhap;
 		this.maNguyenLieu = maNguyenLieu;
 		this.soLuong = soLuong;
-		this.image = image;
+ 
 		this.donGia = donGia;
 		this.phieuNhap = phieuNhap;
 		this.nguyenLieu = nguyenLieu;
 	}
 	@Column(name = "SoLuong")
     private Integer soLuong;
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] image;
+
     @Column(name = "DonGia")
     private Double donGia;
 

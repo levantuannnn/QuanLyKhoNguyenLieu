@@ -34,7 +34,7 @@ public class TaiKhoanController {
     public ResponseEntity<?> login(@RequestBody TaiKhoan tk) {
         // 1. Tìm user trong DB
         TaiKhoan user = service.findByUsername(tk.getTenDangNhap());
-
+        	
         // 2. Kiểm tra user tồn tại và mật khẩu khớp (nên dùng .equals)
         if (user != null && user.getMatKhau().equals(tk.getMatKhau())) {
             // Trả về Object user (JSON) - Frontend sẽ không còn lỗi Unexpected token 'Đ'

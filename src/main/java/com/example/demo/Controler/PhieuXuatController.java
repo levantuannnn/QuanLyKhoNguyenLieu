@@ -4,23 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.Model.*;
 import com.example.demo.Service.PhieuXuatService;
+
+import java.time.LocalDate;
 import java.util.List;
 
-// Class hứng dữ liệu cho Xuất kho
-class PhieuXuatRequest {
-    public PhieuXuat phieu;
-    public List<ChiTietPhieuXuat> chiTiet;
-}
+ 
 
 @RestController
 @RequestMapping("/api/phieu-xuat")
  
 public class PhieuXuatController {
-    @Autowired private PhieuXuatService service;
-
-    @PostMapping("/xuat-kho")
-    public PhieuXuat xuatKho(@RequestBody PhieuXuatRequest request) {
-        return service.thucHienXuatKho(request.phieu, request.chiTiet);
+    @Autowired private PhieuXuatService service; 
+    @GetMapping("/xuatkho")
+    public byte[] xuatKho(@RequestParam LocalDate ngayxuat,@RequestParam String lido,@RequestParam List<String> nl) throws Exception {  
+    	return service.luufile( ngayxuat, lido, nl); 
     }
+ 
  
 }

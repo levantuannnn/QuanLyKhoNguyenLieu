@@ -7,20 +7,33 @@ import java.time.LocalDate; // Nên dùng LocalDate cho kiểu DATE trong SQL
 @Table(name = "PhieuNhap") // Viết hoa đúng như SQL
 public class PhieuNhap {
 
-    public PhieuNhap(Integer maPhieuNhap, LocalDate ngayNhap, NhaCungCap nhaCungCap, NhanVien nhanVien,
+ 
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "MaPhieuNhap") // Khớp chính xác SQL
+    private Integer maPhieuNhap;
+ 
+	public byte[] getImage() {
+		return image;
+	}
+
+	public PhieuNhap(Integer maPhieuNhap, byte[] image, LocalDate ngayNhap, NhaCungCap nhaCungCap, NhanVien nhanVien,
 			String nguoiGiaoHang) {
 		super();
 		this.maPhieuNhap = maPhieuNhap;
+		this.image = image;
 		this.ngayNhap = ngayNhap;
 		this.nhaCungCap = nhaCungCap;
 		this.nhanVien = nhanVien;
 		this.nguoiGiaoHang = nguoiGiaoHang;
 	}
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MaPhieuNhap") // Khớp chính xác SQL
-    private Integer maPhieuNhap;
 
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	@Lob
+	@Column(name = "image", columnDefinition = "LONGBLOB")
+	private byte[] image;
     @Column(name = "NgayNhap")
     private LocalDate ngayNhap; // Trong SQL là DATE, dùng LocalDate sẽ chuẩn hơn String
 

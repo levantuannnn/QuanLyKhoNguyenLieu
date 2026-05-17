@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -22,7 +23,16 @@ public class PhieuXuat {
 		super();
 		this.maPhieuXuat = maPhieuXuat;
 	}
+    public byte[] getImage() {
+		return image;
+	}
 
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	@Lob
+    @Column(name = "iamge", columnDefinition = "LONGBLOB")
+    private byte[] image;
 	@Column(name = "NgayXuat")
     private LocalDate ngayXuat;
 
@@ -32,15 +42,27 @@ public class PhieuXuat {
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")
     private NhanVien nhanVien;
+    @Column(name="soluong")
+    private Integer soluong;
 
-    public PhieuXuat(Integer maPhieuXuat, LocalDate ngayXuat, String lyDo, NhanVien nhanVien) {
+ 
+	public PhieuXuat(Integer maPhieuXuat, byte[] image, LocalDate ngayXuat, String lyDo, NhanVien nhanVien,
+			Integer soluong) {
 		super();
 		this.maPhieuXuat = maPhieuXuat;
+		this.image = image;
 		this.ngayXuat = ngayXuat;
 		this.lyDo = lyDo;
 		this.nhanVien = nhanVien;
+		this.soluong = soluong;
+	}
+	public Integer getSoluong() {
+	    return soluong;
 	}
 
+	public void setSoluong(Integer soluong) {
+	    this.soluong = soluong;
+	}
 	public Integer getMaPhieuXuat() {
 		return maPhieuXuat;
 	}

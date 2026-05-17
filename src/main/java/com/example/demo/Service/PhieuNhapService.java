@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +17,20 @@ public class PhieuNhapService {
 
     public List<PhieuNhap> getAll() { return phieuNhapRepo.findAll(); }
 
-    @Transactional
-    public PhieuNhap thucHienNhapKho(PhieuNhap phieu, List<ChiTietPhieuNhap> dsChiTiet) {
-        // 1. Lưu phiếu nhập chính
-        PhieuNhap savedPhieu = phieuNhapRepo.save(phieu);
-
-        // 2. Lưu danh sách chi tiết và cập nhật số lượng tồn kho
-        for (ChiTietPhieuNhap ct : dsChiTiet) {
-            ct.setMaPhieuNhap(savedPhieu.getMaPhieuNhap());
-            chiTietRepo.save(ct);
-            // Cộng thêm vào kho
-            nguyenLieuService.updateStock(ct.getMaNguyenLieu(), ct.getSoLuong());
-        }
-        return savedPhieu;
-    }
+    public  byte[] exportcsv(String ncc,List<String> dsnguyenlieu,int sl,int dongia) throws Exception {
+		
+		Path path = Path.of("phieunhap.csv"); 
+		String danhsach = String.join(";", dsnguyenlieu); 
+		String csv =
+		  "NhaCungCap,Danhsachnguyenlieu,SoLuong,Dongia\n" + 
+		  ncc + "," +
+		  danhsach + "," +
+		  sl + "," +
+		  dongia; 
+		 Files.writeString(path, csv);
+		 
+		byte[] data=Files.readAllBytes(path);
+		return data;
+  
+			}
 }
