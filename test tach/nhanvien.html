@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Kho Nguyên Liệu</title>
+  <meta name="description" content="Phần mềm quản lý kho nguyên liệu - Hệ thống nhập xuất tồn kho">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app-page" class="app-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>📦 Kho Nguyên Liệu</h2>
+      <span class="role-badge employee">Nhân viên</span>
+    </div>
+
+    <nav id="sidebar-employee" class="sidebar-nav">
+      <div class="nav-section-title">Công việc</div>
+      <div class="nav-item active" data-page="page-view-materials">
+        <span class="icon">📋</span> Xem nguyên liệu
+      </div>
+      <div class="nav-item" data-page="page-import">
+        <span class="icon">📥</span> Phiếu nhập kho
+      </div>
+      <div class="nav-item" data-page="page-export">
+        <span class="icon">📤</span> Phiếu xuất kho
+      </div>
+      <div class="nav-item" data-page="page-stockcheck">
+        <span class="icon">🔍</span> Kiểm kê kho
+      </div>
+      <div class="nav-item" data-page="page-condition">
+        <span class="icon">⚠️</span> Báo cáo tình trạng
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="avatar">A</div>
+        <div>
+          <div id="user-display-name" style="color:#fff; font-weight:500">Trần Văn B</div>
+          <div style="font-size:11px">Đang trực tuyến</div>
+        </div>
+      </div>
+      <button class="btn-logout">🚪 Đăng xuất</button>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="topbar">
+      <h1 id="topbar-title">Xem danh sách nguyên liệu</h1>
+      <span class="breadcrumb">Trang chủ / <strong id="breadcrumb-current">Nguyên liệu</strong></span>
+    </div>
+
+    <div class="content-area">
+
+      <div id="page-view-materials" class="page-section active">
+        <div class="alert alert-info">
+          ℹ️ Bạn đang ở chế độ <strong>chỉ xem</strong>. Liên hệ Quản lý để thêm/sửa/xóa nguyên liệu.
+        </div>
+
+        <div class="toolbar">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Tìm theo tên hoặc mã nguyên liệu...">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã NL</th>
+                  <th>Tên nguyên liệu</th>
+                  <th>Đơn vị</th>
+                  <th>Tồn kho</th>
+                  <th>Tồn tối thiểu</th>
+                  <th>Trạng thái</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>NL001</td><td>Bột mì đa dụng</td><td>kg</td><td>150</td><td>50</td>
+                  <td><span class="badge badge-success">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>NL002</td><td>Đường cát trắng</td><td>kg</td><td>80</td><td>30</td>
+                  <td><span class="badge badge-success">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>NL003</td><td>Sữa tươi nguyên kem</td><td>lít</td><td>45</td><td>20</td>
+                  <td><span class="badge badge-success">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>NL004</td><td>Trứng gà ta</td><td>quả</td><td>200</td><td>100</td>
+                  <td><span class="badge badge-success">Hoạt động</span></td>
+                </tr>
+                <tr>
+                  <td>NL005</td><td>Bơ lạt Anchor</td><td>kg</td><td>8</td><td>10</td>
+                  <td><span class="badge badge-warning">Sắp hết</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-import" class="page-section">
+        <div class="card">
+          <div class="card-header"><h3>Tạo phiếu nhập kho mới</h3></div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label>Mã phiếu nhập</label><input type="text" class="form-control" value="PN004" readonly style="background:#f4f5f7"></div>
+              <div class="form-group"><label>Ngày nhập <span class="required">*</span></label><input type="date" class="form-control" value="2026-04-20"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nhà cung cấp <span class="required">*</span></label>
+                <select class="form-control">
+                  <option value="">-- Chọn nhà cung cấp --</option>
+                  <option>NCC001 - Công ty TNHH Thực phẩm ABC</option>
+                  <option>NCC002 - Đại lý Sữa Vinamilk</option>
+                  <option>NCC003 - Trang trại Trứng Sạch Ba Huân</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Người giao hàng</label><input type="text" class="form-control" placeholder="Tên người giao"></div>
+            </div>
+
+            <div class="receipt-section">
+              <h4>Danh sách nguyên liệu nhập</h4>
+              <div style="display:flex; gap:10px; margin-bottom:8px; font-size:12px; font-weight:600; color:var(--text-secondary)">
+                <span style="flex:2">Nguyên liệu</span><span style="flex:1">Số lượng</span><span style="flex:1">Đơn giá (VNĐ)</span><span style="width:36px"></span>
+              </div>
+              <div id="import-items">
+                <div class="item-row">
+                  <div class="form-group" style="flex:2">
+                    <select class="form-control">
+                      <option value="">-- Chọn nguyên liệu --</option>
+                      <option>NL001 - Bột mì</option><option>NL002 - Đường cát</option><option>NL003 - Sữa tươi</option><option>NL004 - Trứng gà</option><option>NL005 - Bơ lạt</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Số lượng" min="1"></div>
+                  <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Đơn giá"></div>
+                  <button class="btn btn-outline btn-sm btn-icon" onclick="this.closest('.item-row').remove()" title="Xóa">✕</button>
+                </div>
+              </div>
+              <button class="btn-add-row" onclick="addItemRow('import-items')">+ Thêm nguyên liệu</button>
+            </div>
+            <div class="form-group"><label>Ghi chú</label><textarea class="form-control" placeholder="Ghi chú thêm (nếu có)..."></textarea></div>
+            <div class="btn-group" style="margin-top:8px">
+              <button class="btn btn-primary btn-save-demo">💾 Lưu phiếu nhập</button><button class="btn btn-outline">Hủy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-export" class="page-section">
+        <div class="card">
+          <div class="card-header"><h3>Tạo phiếu xuất kho mới</h3></div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label>Mã phiếu xuất</label><input type="text" class="form-control" value="PX003" readonly style="background:#f4f5f7"></div>
+              <div class="form-group"><label>Ngày xuất <span class="required">*</span></label><input type="date" class="form-control" value="2026-04-20"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Bộ phận nhận <span class="required">*</span></label>
+                <select class="form-control"><option value="">-- Chọn bộ phận --</option><option>Bếp chính</option><option>Quầy pha chế</option><option>Bếp phụ</option></select>
+              </div>
+              <div class="form-group"><label>Lý do xuất</label><input type="text" class="form-control" placeholder="VD: Phục vụ ca sáng"></div>
+            </div>
+
+            <div class="receipt-section">
+              <h4>Danh sách nguyên liệu xuất</h4>
+              <div style="display:flex; gap:10px; margin-bottom:8px; font-size:12px; font-weight:600; color:var(--text-secondary)">
+                <span style="flex:2">Nguyên liệu (kèm tồn kho)</span><span style="flex:1">Số lượng xuất</span><span style="width:36px"></span>
+              </div>
+              <div id="export-items">
+                <div class="item-row">
+                  <div class="form-group" style="flex:2">
+                    <select class="form-control">
+                      <option value="">-- Chọn nguyên liệu --</option>
+                      <option>NL001 - Bột mì (Tồn: 150 kg)</option><option>NL002 - Đường cát (Tồn: 80 kg)</option><option>NL003 - Sữa tươi (Tồn: 45 lít)</option><option>NL004 - Trứng gà (Tồn: 200 quả)</option><option>NL005 - Bơ lạt (Tồn: 8 kg)</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Số lượng" min="1"></div>
+                  <button class="btn btn-outline btn-sm btn-icon" onclick="this.closest('.item-row').remove()" title="Xóa">✕</button>
+                </div>
+              </div>
+              <button class="btn-add-row" onclick="addExportItemRow('export-items')">+ Thêm nguyên liệu</button>
+            </div>
+            <div class="alert alert-info" style="margin-top:0">ℹ️ Số lượng xuất không được vượt quá số lượng tồn kho hiện tại.</div>
+            <div class="form-group"><label>Ghi chú</label><textarea class="form-control" placeholder="Ghi chú thêm (nếu có)..."></textarea></div>
+            <div class="btn-group" style="margin-top:8px">
+              <button class="btn btn-primary btn-save-demo">💾 Lưu phiếu xuất</button><button class="btn btn-outline">Hủy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-stockcheck" class="page-section">
+        <div class="card">
+          <div class="card-header"><h3>Phiếu kiểm kê / Điều chỉnh tồn kho</h3></div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label>Mã phiếu kiểm kê</label><input type="text" class="form-control" value="KK012" readonly style="background:#f4f5f7"></div>
+              <div class="form-group"><label>Ngày kiểm kê</label><input type="date" class="form-control" value="2026-04-20"></div>
+            </div>
+
+            <div class="card mt-4" style="border:1px solid var(--border)">
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr><th>Mã NL</th><th>Tên nguyên liệu</th><th>ĐVT</th><th>Tồn hệ thống</th><th>Tồn thực tế</th><th>Chênh lệch</th><th>Ghi chú/Lý do</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>NL001</td><td>Bột mì đa dụng</td><td>kg</td><td>150</td><td><input type="number" class="form-control" style="width:80px" value="150"></td><td><span class="badge badge-success">0</span></td><td><input type="text" class="form-control" placeholder="Nhập lý do nếu chênh lệch"></td></tr>
+                    <tr><td>NL002</td><td>Đường cát trắng</td><td>kg</td><td>80</td><td><input type="number" class="form-control" style="width:80px" value="78"></td><td><span class="badge badge-danger">-2</span></td><td><input type="text" class="form-control" placeholder="Nhập lý do nếu chênh lệch" value="Hao hụt tự nhiên"></td></tr>
+                    <tr><td>NL003</td><td>Sữa tươi nguyên kem</td><td>lít</td><td>45</td><td><input type="number" class="form-control" style="width:80px" value="45"></td><td><span class="badge badge-success">0</span></td><td><input type="text" class="form-control" placeholder="Nhập lý do nếu chênh lệch"></td></tr>
+                    <tr><td>NL004</td><td>Trứng gà ta</td><td>quả</td><td>200</td><td><input type="number" class="form-control" style="width:80px" value="195"></td><td><span class="badge badge-danger">-5</span></td><td><input type="text" class="form-control" placeholder="Nhập lý do nếu chênh lệch" value="Vỡ trong quá trình bảo quản"></td></tr>
+                    <tr><td>NL005</td><td>Bơ lạt Anchor</td><td>kg</td><td>8</td><td><input type="number" class="form-control" style="width:80px" value="8"></td><td><span class="badge badge-success">0</span></td><td><input type="text" class="form-control" placeholder="Nhập lý do nếu chênh lệch"></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="alert alert-warning mt-4">⚠️ Bắt buộc nhập lý do/ghi chú cho các nguyên liệu có chênh lệch.</div>
+            <div class="btn-group"><button class="btn btn-primary btn-save-demo">💾 Lưu phiếu kiểm kê</button><button class="btn btn-outline">Hủy</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-condition" class="page-section">
+        <div class="card">
+          <div class="card-header"><h3>Báo cáo nguyên liệu hư hỏng / hết hạn</h3></div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group"><label>Mã phiếu báo cáo</label><input type="text" class="form-control" value="BC007" readonly style="background:#f4f5f7"></div>
+              <div class="form-group"><label>Ngày báo cáo</label><input type="date" class="form-control" value="2026-04-20"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nguyên liệu <span class="required">*</span></label>
+                <select class="form-control">
+                  <option value="">-- Chọn nguyên liệu --</option>
+                  <option>NL001 - Bột mì (Tồn: 150 kg)</option><option>NL002 - Đường cát (Tồn: 80 kg)</option><option>NL003 - Sữa tươi (Tồn: 45 lít)</option><option>NL004 - Trứng gà (Tồn: 200 quả)</option><option>NL005 - Bơ lạt (Tồn: 8 kg)</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Số lượng hỏng <span class="required">*</span></label><input type="number" class="form-control" placeholder="Nhập số lượng" min="1"></div>
+            </div>
+            <div class="form-group">
+              <label>Tình trạng <span class="required">*</span></label>
+              <select class="form-control"><option value="">-- Chọn tình trạng --</option><option>Hư hỏng</option><option>Hết hạn sử dụng</option><option>Vỡ / Đổ</option><option>Kém chất lượng</option><option>Khác</option></select>
+            </div>
+            <div class="form-group"><label>Mô tả chi tiết</label><textarea class="form-control" placeholder="Mô tả tình trạng cụ thể của nguyên liệu..."></textarea></div>
+            <div class="form-group"><label>Hình ảnh minh chứng</label><div class="image-upload">📷 Nhấn để chọn ảnh hoặc kéo thả file vào đây<br><span style="font-size:11px; color:var(--text-secondary)">Hỗ trợ: JPG, PNG (tối đa 5MB)</span></div></div>
+            <div class="alert alert-warning" style="margin-top:0">⚠️ Số lượng báo hỏng không được vượt quá số lượng tồn kho. Sau khi lưu, tồn kho sẽ tự động giảm.</div>
+            <div class="btn-group"><button class="btn btn-danger btn-save-demo">📋 Gửi báo cáo</button><button class="btn btn-outline">Hủy</button></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => document.querySelectorAll(sel);
+
+  function showPage(pageId) {
+    $$('.page-section').forEach(p => p.classList.remove('active'));
+    $(`#${pageId}`).classList.add('active');
+    $$('.nav-item').forEach(n => n.classList.remove('active'));
+    $(`.nav-item[data-page="${pageId}"]`).classList.add('active');
+
+    const titles = {
+      'page-view-materials': 'Xem danh sách nguyên liệu',
+      'page-import': 'Tạo phiếu nhập kho',
+      'page-export': 'Tạo phiếu xuất kho',
+      'page-stockcheck': 'Kiểm kê kho',
+      'page-condition': 'Báo cáo tình trạng nguyên liệu',
+    };
+    if (titles[pageId]) $('#topbar-title').textContent = titles[pageId];
+  }
+
+  function addItemRow(containerId) {
+    const container = $(`#${containerId}`);
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <div class="form-group" style="flex:2">
+        <select class="form-control">
+          <option value="">-- Chọn nguyên liệu --</option>
+          <option>NL001 - Bột mì</option><option>NL002 - Đường cát</option><option>NL003 - Sữa tươi</option><option>NL004 - Trứng gà</option><option>NL005 - Bơ lạt</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Số lượng" min="1"></div>
+      <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Đơn giá"></div>
+      <button class="btn btn-outline btn-sm btn-icon" onclick="this.closest('.item-row').remove()" title="Xóa">✕</button>
+    `;
+    container.appendChild(row);
+  }
+
+  function addExportItemRow(containerId) {
+    const container = $(`#${containerId}`);
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <div class="form-group" style="flex:2">
+        <select class="form-control">
+          <option value="">-- Chọn nguyên liệu --</option>
+          <option>NL001 - Bột mì (Tồn: 150 kg)</option><option>NL002 - Đường cát (Tồn: 80 kg)</option><option>NL003 - Sữa tươi (Tồn: 45 lít)</option><option>NL004 - Trứng gà (Tồn: 200 quả)</option><option>NL005 - Bơ lạt (Tồn: 8 kg)</option>
+        </select>
+      </div>
+      <div class="form-group" style="flex:1"><input type="number" class="form-control" placeholder="Số lượng" min="1"></div>
+      <button class="btn btn-outline btn-sm btn-icon" onclick="this.closest('.item-row').remove()" title="Xóa">✕</button>
+    `;
+    container.appendChild(row);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    $$('.nav-item').forEach(item => {
+      item.addEventListener('click', () => showPage(item.dataset.page));
+    });
+
+    $('.btn-logout').addEventListener('click', () => { window.location.href = 'login.html'; });
+
+    $$('.btn-save-demo').forEach(btn => {
+      btn.addEventListener('click', () => alert('✓ Thao tác thành công! (Demo)'));
+    });
+  });
+</script>
+</body>
+</html>
