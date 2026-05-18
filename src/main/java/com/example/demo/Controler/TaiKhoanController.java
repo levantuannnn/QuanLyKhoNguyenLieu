@@ -25,8 +25,8 @@ public class TaiKhoanController {
 
     // Đăng ký tài khoản mới
     @PostMapping("/register")
-    public TaiKhoan register(@RequestBody TaiKhoan tk) {
-        return service.save(tk);
+    public void register(@RequestParam String username,@RequestParam String password) {
+         service.save(username,password);
     }
 
     // API Đăng nhập đơn giản

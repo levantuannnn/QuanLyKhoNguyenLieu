@@ -14,7 +14,7 @@ public class PhieuNhapController {
     @Autowired private PhieuNhapService service;
 
     @GetMapping("/download")
-    public byte[] download(@RequestParam String nhacungcap,@RequestParam List<String> ng,@RequestParam  int sl,@RequestParam  int dongia) throws Exception { 
-    	return service.exportcsv(nhacungcap,ng,sl,dongia); 
+    public byte[] download(@RequestParam String maphieunhap,   @RequestParam String nhacungcap,@RequestParam List<String> ng,@RequestParam  int sl,@RequestParam  int dongia, @RequestParam String ghichu) throws Exception { 
+    	return service.exportcsv(maphieunhap,nhacungcap,ng,sl,dongia,ghichu); 
     } 
 }

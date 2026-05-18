@@ -23,16 +23,9 @@ public class PhieuXuat {
 		super();
 		this.maPhieuXuat = maPhieuXuat;
 	}
-    public byte[] getImage() {
-		return image;
-	}
+    
 
-	public void setImage(byte[] image) {
-		this.image = image;
-	}
-	@Lob
-    @Column(name = "iamge", columnDefinition = "LONGBLOB")
-    private byte[] image;
+
 	@Column(name = "NgayXuat")
     private LocalDate ngayXuat;
 
@@ -50,7 +43,7 @@ public class PhieuXuat {
 			Integer soluong) {
 		super();
 		this.maPhieuXuat = maPhieuXuat;
-		this.image = image;
+
 		this.ngayXuat = ngayXuat;
 		this.lyDo = lyDo;
 		this.nhanVien = nhanVien;

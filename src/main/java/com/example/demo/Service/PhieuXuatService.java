@@ -19,21 +19,20 @@ import com.example.demo.Jpa.*;
 public class PhieuXuatService {  
      @Autowired 
      private PhieuXuatRepository phieuxuat;
-    public byte[] luufile( LocalDate ngayxuat,String lido,List<String> nl) throws Exception { 
+    public byte[] luufile( String maphieuxuat,LocalDate ngayxuat,String BophanNhan,String lido,List<String> nl,int sl, String ghichu) throws Exception { 
 				PhieuXuat np=new PhieuXuat();
 			 
 				Path path = Path.of("phieuxuat.csv"); 
 				String danhsach = String.join(";", nl);
 				 
 				String csv =
-				    "NgayXuat,LidoXuat,danhsachnguyenlieu\n" +
-				    ngayxuat + "," +
+				    "MaphieuXuat,NgayXuat,LidoXuat,danhsachnguyenlieu,soluong,ghichu\n" +maphieuxuat+","+
+				    ngayxuat + "," +BophanNhan+","+
 				    lido + "," +
-				    danhsach; 
+				    danhsach+","+sl+","+ghichu; 
 				Files.writeString(path, csv); 
 				byte[] data = Files.readAllBytes(path); 
-				np.setImage(data); 
-			    return np.getImage();
+				return data;
 		}
  
 }

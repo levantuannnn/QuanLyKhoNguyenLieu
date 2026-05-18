@@ -17,18 +17,17 @@ public class PhieuNhapService {
 
     public List<PhieuNhap> getAll() { return phieuNhapRepo.findAll(); }
 
-    public  byte[] exportcsv(String ncc,List<String> dsnguyenlieu,int sl,int dongia) throws Exception {
+    public  byte[] exportcsv(String maphieunhap,String ncc,List<String> dsnguyenlieu,int sl,int dongia, String ghichu) throws Exception {
 		
 		Path path = Path.of("phieunhap.csv"); 
 		String danhsach = String.join(";", dsnguyenlieu); 
 		String csv =
-		  "NhaCungCap,Danhsachnguyenlieu,SoLuong,Dongia\n" + 
+		  "Maphieunhap,NhaCungCap,Danhsachnguyenlieu,SoLuong,Dongia,ghichu\n" +maphieunhap+","+
 		  ncc + "," +
 		  danhsach + "," +
 		  sl + "," +
-		  dongia; 
-		 Files.writeString(path, csv);
-		 
+		  dongia+","+ghichu;
+		 Files.writeString(path, csv); 
 		byte[] data=Files.readAllBytes(path);
 		return data;
   

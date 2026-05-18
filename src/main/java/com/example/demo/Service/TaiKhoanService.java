@@ -15,5 +15,22 @@ public class TaiKhoanService {
         return repo.findByTenDangNhap(username);
     }
     
-    public TaiKhoan save(TaiKhoan tk) { return repo.save(tk); }
+    public void  save(String username,String password) {
+    	 TaiKhoan tk= new TaiKhoan();
+    	 tk.setTenDangNhap(username);
+    	 tk.setMatKhau(password);
+    	 
+    		 repo.save(tk);
+     
+    }
+    public boolean xoataikhoan(int id) {
+    	  TaiKhoan tk=repo.findById(id).orElse(null);
+    	  if(tk==null) {
+    		   return false;
+    	  }
+    	  else {
+    		   repo.delete(tk);
+    		   return true;
+    	  }
+    }
 }

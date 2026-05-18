@@ -16,8 +16,8 @@ import java.util.List;
 public class PhieuXuatController {
     @Autowired private PhieuXuatService service; 
     @GetMapping("/xuatkho")
-    public byte[] xuatKho(@RequestParam LocalDate ngayxuat,@RequestParam String lido,@RequestParam List<String> nl) throws Exception {  
-    	return service.luufile( ngayxuat, lido, nl); 
+    public byte[] xuatKho(@RequestParam String maphieuxuat,@RequestParam LocalDate ngayxuat,@RequestParam String BophanNhan,@RequestParam String lido,@RequestParam List<String> nl,@RequestParam int sl, @RequestParam String ghichu) throws Exception {  
+    	return service.luufile( maphieuxuat,ngayxuat,BophanNhan, lido, nl,sl,ghichu); 
     }
  
  
