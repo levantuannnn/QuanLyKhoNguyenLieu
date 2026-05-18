@@ -86,7 +86,7 @@ public class NguyenLieu {
 	}
 
 	public NguyenLieu(Integer maNguyenLieu, String tenNguyenLieu, String donVi, Integer soLuongTon, Integer mucToiThieu,
-			String trangThai, String hinhAnh) {
+			String trangThai) {
 		super();
 		this.maNguyenLieu = maNguyenLieu;
 		this.tenNguyenLieu = tenNguyenLieu;
@@ -94,7 +94,7 @@ public class NguyenLieu {
 		this.soLuongTon = soLuongTon;
 		this.mucToiThieu = mucToiThieu;
 		this.trangThai = trangThai;
-		this.hinhAnh = hinhAnh;
+		
 	}
 
 	public NguyenLieu() {

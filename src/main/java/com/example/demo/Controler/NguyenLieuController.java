@@ -2,30 +2,30 @@ package com.example.demo.Controler;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.Jpa.NguyenLieuRepository;
 import com.example.demo.Model.NguyenLieu;
 import com.example.demo.Service.NguyenLieuService;
 
 @RestController
 @RequestMapping("/api/nguyen-lieu")
 public class NguyenLieuController {
-
-    private final NguyenLieuService service;
-
-    public NguyenLieuController(NguyenLieuService service) {
-        this.service = service;
-    }
+	@Autowired
+    private  NguyenLieuService service;
+    @Autowired
+    private  NguyenLieuRepository jpass;
  
     @GetMapping
     public ResponseEntity<List<NguyenLieu>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
  
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Integer id) {
-        NguyenLieu nl = service.getById(id);
+    @GetMapping("/serach")
+    public ResponseEntity<?> getById(@RequestParam String name) {
+        NguyenLieu nl = jpass.findByTenNguyenLieu(name).orElse(null);
         if (nl == null) {
             return ResponseEntity.notFound().build();
         }

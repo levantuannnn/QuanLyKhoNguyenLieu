@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Jpa.NguyenLieuRepository;
@@ -11,13 +12,10 @@ import com.example.demo.Model.NguyenLieu;
 
 @Service
 public class NguyenLieuService {
+     @Autowired
+    private   NguyenLieuRepository repo;
 
-    private final NguyenLieuRepository repo;
-
-    // Constructor injection (không cần @Autowired)
-    public NguyenLieuService(NguyenLieuRepository repo) {
-        this.repo = repo;
-    }
+    
 
     // Cập nhật tồn kho (nhập: amount > 0, xuất: amount < 0)
     public void updateStock(Integer id, Integer amount) {
